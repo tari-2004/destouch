@@ -440,7 +440,8 @@
                 Let's make something <span class="text-[#d2e65a]">worth watching.</span>
             </h2>
             <div class="mt-10">
-                <a href="/contact" class="dt-btn dt-btn--lg dt-btn--lime">
+                <a href="https://wa.me/2348144146103?text=Hello%20DesTouch,%20I%20want%20to%20book%20a%20production."
+                   target="_blank" rel="noopener noreferrer" class="dt-btn dt-btn--lg dt-btn--lime">
                     <span class="dt-fill" aria-hidden="true"></span>
                     <span class="dt-roll"><span class="dt-roll-in"><span>Book a Production</span><span aria-hidden="true">Book a Production</span></span></span>
                     <span class="dt-chip" aria-hidden="true">
