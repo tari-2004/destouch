@@ -135,7 +135,7 @@
     .dt-tab:hover { color: #fff; }
     .dt-tab[aria-selected="true"] { color: #0b0b0b; }
     .dt-tab:focus-visible { outline: 2px solid #d2e65a; outline-offset: 3px; }
-    .dt-tab-n { font-size: .72em; opacity: .55; letter-spacing: .08em; }
+    .dt-tab-ico { width: 18px; height: 18px; flex: none; margin-top: -2px; }
 
     .dt-js .dt-panel:not(.is-active) { display: none; }
     @keyframes dt-panel-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -254,7 +254,6 @@ $dt_photos = [
     ['real10.jpeg', 1119, 935], ['real11.jpeg', 1706, 2560], ['real12.jpeg', 1632, 2464],
     ['real13.jpeg', 1170, 643],
 ];
-$dt_film_count = 9;
 ?>
 <!-- 3. WORK: Films / Stills toggle -->
 <section class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 md:pt-20 pb-24 md:pb-32 bg-[#0b0b0b]">
@@ -263,10 +262,12 @@ $dt_film_count = 9;
         <div class="dt-tabs" role="tablist" aria-label="Show work by type" data-active="films">
             <span class="dt-tabs-pill" aria-hidden="true"></span>
             <button type="button" class="dt-tab" role="tab" id="dt-tab-films" data-tab="films" aria-controls="dt-panel-films" aria-selected="true">
-                Films <span class="dt-tab-n"><?= sprintf('%02d', $dt_film_count) ?></span>
+                <svg class="dt-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg>
+                Films
             </button>
             <button type="button" class="dt-tab" role="tab" id="dt-tab-stills" data-tab="stills" aria-controls="dt-panel-stills" aria-selected="false" tabindex="-1">
-                Stills <span class="dt-tab-n"><?= sprintf('%02d', count($dt_photos)) ?></span>
+                <svg class="dt-tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 1 2-2h2.5l1.5-2h6l1.5 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg>
+                Stills
             </button>
         </div>
     </div>
