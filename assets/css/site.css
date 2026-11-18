@@ -102,6 +102,7 @@ a { color: inherit; }
 }
 .entrance-loader__mark > svg { height: auto; }
 .entrance-loader__mark .brand-logo { height: 90px; }
+.entrance-loader__mark .brand-logo img { object-position: center; }
 .entrance-loader__caption {
   margin-top: 6px; color: rgb(255 255 255 / .72);
   font: 500 1rem/1.2 var(--credit); letter-spacing: .08em;
@@ -154,9 +155,9 @@ a { color: inherit; }
   position: relative; display: block; width: clamp(110px, 14vw, 180px); height: 84px; overflow: hidden;
 }
 .site-head__logo .brand-logo { width: 100%; height: 52px; }
+/* logo-mark.png is cropped tight with a transparent background, so it just fits the box */
 .brand-logo img {
-  position: absolute; top: 50%; left: 50%; width: 320%; max-width: none;
-  transform: translate(-50%, -50%); mix-blend-mode: screen;
+  display: block; width: 100%; height: 100%; object-fit: contain; object-position: left center;
 }
 .site-nav { display: flex; gap: clamp(16px, 3vw, 36px); }
 .site-nav a {

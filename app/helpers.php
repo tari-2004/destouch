@@ -82,7 +82,7 @@ function logo(string $class = ''): string
     }
 
     $brand_class = trim('brand-logo ' . $class);
-    return '<span class="' . e($brand_class) . '"><img src="/images/logo-white.PNG" alt=""></span>';
+    return '<span class="' . e($brand_class) . '"><img src="/images/logo-mark.png" width="577" height="391" alt=""></span>';
 }
 
 function project_alt(array $project): string

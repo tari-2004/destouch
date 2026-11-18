@@ -16,10 +16,11 @@ const WHATSAPP_NUMBER = '';
 
 // Leave a link empty to hide it. These appear on the Contact page and in the footer.
 const SOCIAL_LINKS = [
-    'Instagram' => '',
-    'YouTube' => '',
-    'TikTok' => '',
+    'Instagram' => 'https://www.instagram.com/des_touch.19/',
+    'TikTok' => 'https://www.tiktok.com/@des_touch19',
 ];
+
+const CONTACT_EMAIL = 'destouch8@gmail.com';
 
 // Keep true while the site uses sample images. It labels them, adds the credits page
 // and hides the site from search engines. Set to false once all samples are replaced.

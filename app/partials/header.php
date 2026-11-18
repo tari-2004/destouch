@@ -3,11 +3,15 @@
    Work / Services / About scroll to sections on the home page ("/#id" works from any page).
    Contact stays a normal page. */
 $nav_items = [
-    'work'     => ['/#work',     'Work'],
-    'services' => ['/#services', 'Services'],
+    'home'     => ['/',          'Home'],
     'about'    => ['/#about',    'About'],
-    'contact'  => ['#contact',   'Contact'],
+    'services' => ['/#services', 'Services'],
+    'work'     => ['/work',      'Work'],
 ];
+// On the home page, "Home" starts highlighted (scroll-spy takes over as you scroll)
+if ($nav_current === '' && $body_class === 'page-home') {
+    $nav_current = 'home';
+}
 ?>
 <!doctype html>
 <html lang="en-NG" class="bg-[#0b0b0b] text-white scroll-smooth">
@@ -20,7 +24,7 @@ $nav_items = [
 <meta name="robots" content="noindex">
 <?php endif; ?>
 <meta name="theme-color" content="#0b0b0b">
-<link rel="icon" href="/images/logo-white.PNG" type="image/png">
+<link rel="icon" href="/images/logo-mark.png" type="image/png">
 <link rel="preload" href="/assets/fonts/BowlbyOne-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/AlfaSlabOne-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/BarlowCondensed-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -160,18 +164,17 @@ $nav_items = [
     }
 
     /* ---------- Logo: smooth back to top when already on home ---------- */
-    var logo = document.querySelector('.site-head__logo');
-    if (logo) {
+    document.querySelectorAll('.site-head__logo, [data-spy="home"]').forEach(function (logo) {
         logo.addEventListener('click', function (e) {
             if (location.pathname === '/') {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
-    }
+    });
 
     /* ---------- Scroll-spy: highlight the section you're in (home page) ---------- */
-    var ids   = ['work', 'services', 'about', 'contact'];
+    var ids   = ['home', 'about', 'services', 'work'];
     var secs  = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
     var links = document.querySelectorAll('[data-spy]');
 
@@ -187,12 +190,10 @@ $nav_items = [
         }, { rootMargin: '-45% 0px -50% 0px' });
         secs.forEach(function (s) { io.observe(s); });
 
-        // clear the highlight when back up in the hero
+        // back up in the hero, "Home" is the active one
         var firstTop = Math.min.apply(null, secs.map(function (s) { return s.offsetTop; }));
         window.addEventListener('scroll', function () {
-            if (window.scrollY + 200 < firstTop) setActive(null);
-            // at the very bottom of the page, the footer (Contact) is the active one
-            else if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) setActive('contact');
+            if (window.scrollY + 200 < firstTop) setActive('home');
         }, { passive: true });
     }
 })();
