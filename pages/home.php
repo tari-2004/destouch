@@ -155,14 +155,15 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
 
             <!-- Copy -->
-            <div class="lg:col-span-6">
-                <h1 class="font-['Bowlby_One'] uppercase tracking-tight leading-[0.95] text-[length:clamp(44px,6.6vw,96px)]">
-                    <span class="dt-rise block text-white" style="--d:.1s">Every frame.</span>
-                    <span class="dt-rise block text-[#d2e65a]" style="--d:.3s">On purpose.</span>
+            <div class="lg:col-span-7">
+                <!-- Bowlby One is very wide: "CREATIVITY WITH" ≈ 9.4em, so size the headline to the column it sits in -->
+                <h1 class="font-['Bowlby_One'] uppercase tracking-tight leading-[0.95] text-[length:clamp(28px,calc((100vw_-_48px)/9.6),72px)] lg:text-[length:clamp(48px,calc(6.2vw_-_9px),70px)]">
+                    <span class="dt-rise block text-white" style="--d:.1s">CREATIVITY WITH</span>
+                    <span class="dt-rise block text-[#d2e65a]" style="--d:.3s">CONSEQUENCES</span>
                 </h1>
 
                 <p class="dt-rise mt-8 max-w-xl text-zinc-300 text-lg sm:text-xl leading-relaxed font-['Barlow']" style="--d:.55s">
-                    Event coverage, photography and video production from Bayelsa, built to make people feel the moment.
+                    A brand that turns ideas into visuals that command attention and stories into experiences worth remembering. Through cinematic video production and photography, DesTouch creates with intention, captures perspectives, and gives moments meaning.
                 </p>
 
                 <div class="dt-rise mt-10 flex flex-wrap gap-4" style="--d:.75s">
@@ -186,7 +187,7 @@
             </div>
 
             <!-- Framed slideshow with viewfinder corners -->
-            <div class="dt-rise lg:col-span-6 relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5] max-h-[640px] w-full rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900" style="--d:.35s">
+            <div class="dt-rise lg:col-span-5 relative aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5] max-h-[640px] w-full rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900" style="--d:.35s">
                 <div class="absolute inset-0">
                     <img class="dt-slide" style="animation-delay:0s"  src="/assets/img/hero.jpeg"  alt="DesTouch Production">
                     <img class="dt-slide" style="animation-delay:5s"  src="/assets/img/hero10.jpeg" alt="" loading="lazy">
@@ -414,7 +415,7 @@
         <div class="dt-reveal mt-14 flex justify-center">
             <a href="/work" class="dt-btn dt-btn--lime">
                 <span class="dt-fill" aria-hidden="true"></span>
-                <span class="dt-roll"><span class="dt-roll-in"><span>View All Works</span><span aria-hidden="true">View All Works</span></span></span>
+                <span class="dt-roll"><span class="dt-roll-in"><span>View Our Works</span><span aria-hidden="true">View Our Works</span></span></span>
                 <span class="dt-chip" aria-hidden="true">
                     <svg class="a1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                     <svg class="a2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>

@@ -19,7 +19,9 @@ if ($path === '/') {
         'nav_current' => 'work',
         'whatsapp' => whatsapp_link($active ? PROJECT_TYPES[$active]['message'] : "Hi Des Touch, I'd like to enquire about a shoot."),
     ]);
-} elseif (preg_match('#^/work/([a-z0-9-]+)$#', $path, $match) && isset(PROJECTS[$match[1]])) {
+} elseif (false && preg_match('#^/work/([a-z0-9-]+)$#', $path, $match) && isset(PROJECTS[$match[1]])) {
+    // Old project pages are switched off: they used sample images that have been removed.
+    // Remove "false &&" above to bring them back once they have real images.
     $project = PROJECTS[$match[1]];
     $type = PROJECT_TYPES[$project['type']];
     render_page('project', [

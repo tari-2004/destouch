@@ -115,6 +115,83 @@
     }
     @keyframes dt-shine { 0%, 55% { left: -60%; } 100% { left: 130%; } }
 
+    /* ---------- Films / Stills toggle ---------- */
+    .dt-tabs-wrap { display: none; }
+    .dt-js .dt-tabs-wrap { display: flex; }
+    .dt-tabs { position: relative; display: grid; grid-template-columns: 1fr 1fr; padding: 6px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .15); background: rgba(255, 255, 255, .04); }
+    .dt-tabs-pill {
+        position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 6px);
+        border-radius: 999px; background: #d2e65a; box-shadow: 0 6px 24px rgba(210, 230, 90, .25);
+        transition: transform .5s cubic-bezier(.7, 0, .2, 1);
+    }
+    .dt-tabs[data-active="stills"] .dt-tabs-pill { transform: translateX(100%); }
+    .dt-tab {
+        position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
+        min-width: 140px; padding: 14px 26px; border-radius: 999px; cursor: pointer;
+        font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px;
+        letter-spacing: .14em; text-transform: uppercase; line-height: 1; color: #d4d4d8;
+        transition: color .4s ease;
+    }
+    .dt-tab:hover { color: #fff; }
+    .dt-tab[aria-selected="true"] { color: #0b0b0b; }
+    .dt-tab:focus-visible { outline: 2px solid #d2e65a; outline-offset: 3px; }
+    .dt-tab-n { font-size: .72em; opacity: .55; letter-spacing: .08em; }
+
+    .dt-js .dt-panel:not(.is-active) { display: none; }
+    @keyframes dt-panel-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    .dt-panel.is-entering { animation: dt-panel-in .6s cubic-bezier(.2, .7, .2, 1); }
+
+    /* masonry for photos: keeps every photo's real shape */
+    .dt-masonry { column-gap: 1.5rem; }
+    .dt-masonry > * { break-inside: avoid; margin-bottom: 1.5rem; }
+    @media (min-width: 1024px) {
+        .dt-masonry { column-gap: 2rem; }
+        .dt-masonry > * { margin-bottom: 2rem; }
+    }
+
+    /* ---------- lightbox ---------- */
+    .dt-lb {
+        width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none;
+        margin: 0; padding: 0; border: 0; background: transparent; color: #fff; overflow: hidden;
+    }
+    .dt-lb[open] { display: flex; align-items: center; justify-content: center; animation: dt-lb-in .35s ease; }
+    .dt-lb::backdrop { background: rgba(8, 8, 8, .94); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+    @keyframes dt-lb-in { from { opacity: 0; } to { opacity: 1; } }
+    .dt-lb-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 72px 16px; touch-action: pan-y; }
+    @media (min-width: 768px) { .dt-lb-stage { padding: 72px 104px; } }
+    .dt-lb-img {
+        max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 14px;
+        box-shadow: 0 20px 80px rgba(0, 0, 0, .6); user-select: none; -webkit-user-drag: none;
+        transition: opacity .25s ease, transform .35s cubic-bezier(.2, .7, .2, 1);
+    }
+    .dt-lb-img.is-loading { opacity: 0; transform: scale(.98); }
+    .dt-lb-btn {
+        position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center;
+        width: 52px; height: 52px; border-radius: 50%; cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, .25); background: rgba(255, 255, 255, .08); color: #fff;
+        -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+        transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+    }
+    .dt-lb-btn:hover { background: #d2e65a; border-color: #d2e65a; color: #0b0b0b; }
+    .dt-lb-btn:focus-visible { outline: 2px solid #d2e65a; outline-offset: 3px; }
+    .dt-lb-btn svg { width: 20px; height: 20px; }
+    .dt-lb-close { top: 16px; right: 16px; }
+    .dt-lb-prev, .dt-lb-next { top: 50%; translate: 0 -50%; }
+    .dt-lb-prev { left: 24px; }
+    .dt-lb-next { right: 24px; }
+    @media (max-width: 767px) {
+        .dt-lb-prev, .dt-lb-next { top: auto; bottom: 14px; translate: none; }
+        .dt-lb-prev { left: 16px; }
+        .dt-lb-next { right: 16px; }
+    }
+    .dt-lb-count {
+        position: absolute; z-index: 2; top: 30px; left: 24px; margin: 0;
+        font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15px;
+        letter-spacing: .2em; text-transform: uppercase; color: #a1a1aa;
+    }
+    .dt-lb-count b { color: #d2e65a; font-weight: 700; }
+    @media (max-width: 767px) { .dt-lb-count { top: auto; bottom: 32px; left: 50%; translate: -50% 0; } }
+
     @media (prefers-reduced-motion: reduce) {
         .dt-rise { animation: none; opacity: 1; }
         .dt-line { animation: none; }
@@ -122,6 +199,8 @@
         .dt-js .dt-reveal { opacity: 1; translate: none; transition: none; }
         .dt-js .dt-item { transform: none; }
         .dt-btn, .dt-btn:hover { transform: none; }
+        .dt-tabs-pill, .dt-lb-img { transition: none; }
+        .dt-panel.is-entering, .dt-lb[open] { animation: none; }
     }
 </style>
 
@@ -135,11 +214,11 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end">
             <h1 class="lg:col-span-8 font-['Bowlby_One'] uppercase tracking-tight leading-[0.95] text-[length:clamp(44px,8vw,118px)]">
-                <span class="dt-rise block text-white" style="--d:.15s">All</span>
+                <span class="dt-rise block text-white" style="--d:.15s">our</span>
                 <span class="dt-rise block text-[#d2e65a]" style="--d:.3s">Productions.</span>
             </h1>
             <p class="dt-rise lg:col-span-4 text-zinc-300 text-lg md:text-xl leading-relaxed font-['Barlow']" style="--d:.5s">
-                Browse our full catalog of event coverage, commercial photography, cinematic video production, and visual storytelling projects.
+                Browse through our catalog of event coverage, commercial photography, cinematic video production, and visual storytelling projects.
             </p>
         </div>
     </div>
@@ -166,8 +245,34 @@
     </div>
 </div>
 
-<!-- 3. POSTER GRID (bento: first video is featured) -->
+<?php
+// Stills shown in the photography tab: [file, width, height]
+$dt_photos = [
+    ['real1.jpeg', 1060, 1372], ['real2.jpeg', 1448, 1086], ['real3.jpeg', 1448, 1086],
+    ['real4.jpeg', 1328, 1042], ['real5.jpeg', 960, 1100],  ['real6.jpeg', 1448, 1086],
+    ['real7.jpeg', 1086, 1313], ['real8.jpeg', 1298, 1140], ['real9.jpeg', 1448, 860],
+    ['real10.jpeg', 1119, 935], ['real11.jpeg', 1706, 2560], ['real12.jpeg', 1632, 2464],
+    ['real13.jpeg', 1170, 643],
+];
+$dt_film_count = 9;
+?>
+<!-- 3. WORK: Films / Stills toggle -->
 <section class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 md:pt-20 pb-24 md:pb-32 bg-[#0b0b0b]">
+
+    <div class="dt-tabs-wrap dt-reveal justify-center mb-12 md:mb-16">
+        <div class="dt-tabs" role="tablist" aria-label="Show work by type" data-active="films">
+            <span class="dt-tabs-pill" aria-hidden="true"></span>
+            <button type="button" class="dt-tab" role="tab" id="dt-tab-films" data-tab="films" aria-controls="dt-panel-films" aria-selected="true">
+                Films <span class="dt-tab-n"><?= sprintf('%02d', $dt_film_count) ?></span>
+            </button>
+            <button type="button" class="dt-tab" role="tab" id="dt-tab-stills" data-tab="stills" aria-controls="dt-panel-stills" aria-selected="false" tabindex="-1">
+                Stills <span class="dt-tab-n"><?= sprintf('%02d', count($dt_photos)) ?></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- FILMS (bento: first video is featured) -->
+    <div id="dt-panel-films" class="dt-panel is-active" role="tabpanel" aria-labelledby="dt-tab-films">
     <div id="dt-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
 
         <!-- 1 · IMG_6170 (featured, 2x2 on desktop) -->
@@ -297,7 +402,39 @@
         </div>
 
     </div>
+    </div>
+
+    <!-- STILLS (masonry, opens in lightbox) -->
+    <div id="dt-panel-stills" class="dt-panel" role="tabpanel" aria-labelledby="dt-tab-stills">
+        <div class="dt-masonry columns-1 sm:columns-2 lg:columns-3">
+            <?php foreach ($dt_photos as $i => [$file, $w, $h]): ?>
+            <div class="dt-reveal dt-item" style="--d:<?= ($i % 3) / 10 ?>s">
+                <a href="/assets/img/<?= $file ?>" data-lb-index="<?= $i ?>" aria-label="View photo <?= $i + 1 ?> of <?= count($dt_photos) ?> full screen"
+                   class="dt-card dt-photo group relative block overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900 transition duration-300 hover:-translate-y-1.5 hover:border-[#d2e65a]">
+                    <img src="/assets/img/<?= $file ?>" width="<?= $w ?>" height="<?= $h ?>" alt="Photograph by Des Touch" loading="lazy" decoding="async"
+                         class="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-105">
+                    <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="dt-spot pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                    <div class="dt-vf pointer-events-none absolute inset-3.5 scale-105 opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100"></div>
+                    <span class="absolute right-6 top-6 flex h-11 w-11 scale-75 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white opacity-0 backdrop-blur-md transition duration-300 group-hover:scale-100 group-hover:opacity-100" aria-hidden="true"><svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+                    <p class="absolute bottom-6 left-6 flex items-center gap-3 font-['Barlow_Condensed'] text-sm font-semibold uppercase tracking-[0.18em] text-zinc-200"><span class="h-px w-6 bg-[#d2e65a] transition-all duration-300 group-hover:w-12"></span>Shot by Des Touch</p>
+                </a>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 </section>
+
+<!-- LIGHTBOX -->
+<dialog id="dt-lb" class="dt-lb" aria-label="Photo viewer">
+    <div class="dt-lb-stage">
+        <img class="dt-lb-img" alt="Photograph by Des Touch">
+    </div>
+    <p class="dt-lb-count" aria-live="polite"><b>01</b> / <?= sprintf('%02d', count($dt_photos)) ?></p>
+    <button type="button" class="dt-lb-btn dt-lb-close" aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button type="button" class="dt-lb-btn dt-lb-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+    <button type="button" class="dt-lb-btn dt-lb-next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</dialog>
 
 <!-- 4. CLOSING CTA -->
 <section class="relative overflow-hidden bg-[#0b0b0b] border-t border-zinc-900">
@@ -352,6 +489,114 @@
             });
         }, { threshold: 0.1 });
         vids.forEach(function (v) { vio.observe(v); });
+    }
+
+    /* ---------- Films / Stills toggle (remembered in the URL hash) ---------- */
+    var tablist = document.querySelector('.dt-tabs');
+    var tabs = document.querySelectorAll('.dt-tab');
+
+    function showTab(name, opts) {
+        opts = opts || {};
+        if (name !== 'films' && name !== 'stills') name = 'films';
+        if (tablist.getAttribute('data-active') === name && !opts.force) return;
+        tablist.setAttribute('data-active', name);
+        tabs.forEach(function (t) {
+            var on = t.getAttribute('data-tab') === name;
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+            t.tabIndex = on ? 0 : -1;
+            var panel = document.getElementById(t.getAttribute('aria-controls'));
+            panel.classList.toggle('is-active', on);
+            if (on && !opts.instant) {
+                panel.classList.remove('is-entering');
+                void panel.offsetWidth;
+                panel.classList.add('is-entering');
+            }
+        });
+        if (name === 'stills') {
+            vids.forEach(function (v) { v.pause(); });
+        }
+        if (opts.updateHash) history.replaceState(null, '', '#' + name);
+    }
+
+    if (tablist) {
+        tabs.forEach(function (t) {
+            t.addEventListener('click', function () { showTab(t.getAttribute('data-tab'), { updateHash: true }); });
+            t.addEventListener('keydown', function (e) {
+                if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+                e.preventDefault();
+                var next = t.getAttribute('data-tab') === 'films' ? 'stills' : 'films';
+                showTab(next, { updateHash: true });
+                document.getElementById('dt-tab-' + next).focus();
+            });
+        });
+        if (location.hash === '#stills') showTab('stills', { instant: true });
+        window.addEventListener('hashchange', function () {
+            if (location.hash === '#stills' || location.hash === '#films') showTab(location.hash.slice(1));
+        });
+    }
+
+    /* ---------- Lightbox for stills ---------- */
+    var lb = document.getElementById('dt-lb');
+    var photoLinks = Array.prototype.slice.call(document.querySelectorAll('.dt-photo'));
+    if (lb && typeof lb.showModal === 'function' && photoLinks.length) {
+        var lbImg = lb.querySelector('.dt-lb-img');
+        var lbNum = lb.querySelector('.dt-lb-count b');
+        var stage = lb.querySelector('.dt-lb-stage');
+        var current = 0, opener = null;
+        var srcs = photoLinks.map(function (a) { return a.getAttribute('href'); });
+        var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+
+        function show(i) {
+            current = (i + srcs.length) % srcs.length;
+            lbNum.textContent = pad(current + 1);
+            lbImg.classList.add('is-loading');
+            var src = srcs[current];
+            var pre = new Image();
+            pre.onload = pre.onerror = function () {
+                if (srcs[current] !== src) return;
+                lbImg.src = src;
+                lbImg.classList.remove('is-loading');
+            };
+            pre.src = src;
+            // warm up the neighbours so arrows feel instant
+            [current + 1, current - 1].forEach(function (n) {
+                (new Image()).src = srcs[(n + srcs.length) % srcs.length];
+            });
+        }
+
+        photoLinks.forEach(function (a, i) {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                opener = a;
+                show(i);
+                document.documentElement.style.overflow = 'hidden';
+                lb.showModal();
+            });
+        });
+
+        lb.querySelector('.dt-lb-close').addEventListener('click', function () { lb.close(); });
+        lb.querySelector('.dt-lb-prev').addEventListener('click', function () { show(current - 1); });
+        lb.querySelector('.dt-lb-next').addEventListener('click', function () { show(current + 1); });
+        lb.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+        });
+        // click on the dark area around the photo closes it
+        stage.addEventListener('click', function (e) { if (e.target === stage) lb.close(); });
+        lb.addEventListener('close', function () {
+            document.documentElement.style.overflow = '';
+            if (opener) opener.focus({ preventScroll: true });
+        });
+
+        // swipe left / right on touch screens
+        var sx = null, sy = null;
+        stage.addEventListener('pointerdown', function (e) { sx = e.clientX; sy = e.clientY; });
+        stage.addEventListener('pointerup', function (e) {
+            if (sx === null) return;
+            var dx = e.clientX - sx, dy = e.clientY - sy;
+            sx = sy = null;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1));
+        });
     }
 
     /* ---------- 3D tilt + cursor spotlight (mouse devices only) ---------- */

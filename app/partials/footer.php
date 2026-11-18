@@ -162,7 +162,7 @@
         <!-- Bottom Copyright & Credit -->
         <div class="mt-8 pt-8 border-t border-zinc-900 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-10 text-xs font-['Barlow_Condensed'] tracking-widest uppercase text-zinc-500">
             <p>&copy; <?= date('Y') ?> DesTouch. All rights reserved.</p>
-            <p>Captured with Purpose.</p>
+            <p>CREATIVITY WITH CONSEQUENCES.</p>
         </div>
     </div>
 </footer>

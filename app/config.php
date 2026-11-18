@@ -23,7 +23,7 @@ const SOCIAL_LINKS = [
 
 // Keep true while the site uses sample images. It labels them, adds the credits page
 // and hides the site from search engines. Set to false once all samples are replaced.
-const SAMPLE_MODE = true;
+const SAMPLE_MODE = false;
 
 // The showreel on the home page. Add a YouTube or Vimeo video to 'video' when it is ready.
 const SHOWREEL = [
