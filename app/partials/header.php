@@ -24,7 +24,7 @@ if ($nav_current === '' && $body_class === 'page-home') {
 <meta name="robots" content="noindex">
 <?php endif; ?>
 <meta name="theme-color" content="#0b0b0b">
-<link rel="icon" href="/images/logo-mark.png" type="image/png">
+<link rel="icon" href="/assets/img/logo-mark.png" type="image/png">
 <link rel="preload" href="/assets/fonts/BowlbyOne-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/AlfaSlabOne-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/BarlowCondensed-700.woff2" as="font" type="font/woff2" crossorigin>
